@@ -18,7 +18,7 @@ CXXFLAGS = $(CFLAGS)
 
 SRC  = klvanc_util.c
 SRC += demo.c
-SRC += parse.cpp
+SRC += parse.c
 SRC += smpte2038.c
 SRC += scte104.c
 SRC += genscte104.c
