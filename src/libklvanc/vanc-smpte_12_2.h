@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Kernel Labs Inc. All Rights Reserved
+ * Copyright (c) 2019 Kernel Labs Inc. All Rights Reserved
  *
  * Address: Kernel Labs Inc., PO Box 745, St James, NY. 11780
  * Contact: sales@kernellabs.com
@@ -22,7 +22,7 @@
 /**
  * @file	vanc-smpte_12_2.h
  * @author	Devin Heitmueller <dheitmueller@kernellabs.com>
- * @copyright	Copyright (c) 2018 Kernel Labs Inc. All Rights Reserved.
+ * @copyright	Copyright (c) 2019 Kernel Labs Inc. All Rights Reserved.
  * @brief	SMPTE ST 12-2 Timecode over VANC
  */
 
@@ -33,7 +33,7 @@
 
 #ifdef __cplusplus
 extern "C" {
-#endif  
+#endif
 
 /* DBB1 payload types (See Sec 6.2.1 Table 2) */
 #define KLVANC_ATC_LTC 0x00
@@ -170,6 +170,6 @@ int klvanc_SMPTE_12_2_preferred_line(int dbb1, int lineCount, int interlaced);
 
 #ifdef __cplusplus
 };
-#endif  
+#endif
 
 #endif /* _VANC_SMPTE_12_2_H */

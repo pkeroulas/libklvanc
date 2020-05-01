@@ -11,13 +11,11 @@ AM_SILENT_RULES([yes])
 # Checks for programs.
 AC_PROG_CC
 AC_PROG_CC_C99
-AC_PROG_CXX
 if test `uname -s` = "Darwin"
 then
 CFLAGS+=" -I/usr/local/include "
 LDFLAGS+=" -L/usr/local/lib "
 fi
-CFLAGS+=" -DKL_USERSPACE "
 
 # We always build with -fPIC in case our static libraries end up
 # being linked into a consumer's shared library
@@ -35,23 +33,6 @@ AC_PROG_LIBTOOL
 
 # Checks for header files.
 AC_CHECK_HEADERS([arpa/inet.h fcntl.h netinet/in.h stdint.h stdlib.h string.h sys/ioctl.h sys/socket.h sys/time.h unistd.h])
-AC_CHECK_HEADERS([zlib.h],
-                 [break],
-                 [AC_MSG_ERROR([zlib-dev headers not found or not usable])])
-
-# Check for curses (optional)
-AC_CHECK_HEADERS([curses.h], HEADER_LIBCURSES="yes")
-if test "x$HEADER_LIBCURSES" == "xyes" ; then
-    LDFLAGS+=" -lcurses "
-fi
-AM_CONDITIONAL(LIBCURSES, test x"$HEADER_LIBCURSES" == x"yes")
-
-AC_CHECK_HEADERS([libklmonitoring/klmonitoring.h], HEADER_LIBKLMONITORING="yes")
-if test "x$HEADER_LIBKLMONITORING" == "xyes" ; then
-    LDFLAGS+=" -lklmonitoring "
-fi
-AM_CONDITIONAL(LIBKLMONITORING, test x"$HEADER_LIBKLMONITORING" == x"yes")
-
 
 # Checks for typedefs, structures, and compiler characteristics.
 AC_TYPE_UINT16_T
@@ -59,9 +40,6 @@ AC_TYPE_UINT8_T
 
 # Checks for library functions.
 AC_CHECK_FUNCS([memset strrchr])
-
-AC_CONFIG_FILES([Makefile src/Makefile tools/Makefile])
-AC_OUTPUT
 
 # Add debug support
 AC_ARG_ENABLE(debug,
@@ -78,3 +56,7 @@ AM_CONDITIONAL(DEBUG, test x"$debug" = x"true")
 AM_COND_IF(DEBUG,
     AC_DEFINE(DEBUG, 1, [Define to 0 if this is a release build]),
     AC_DEFINE(DEBUG, 0, [Define to 1 or higher if this is a debug build]))
+
+AC_CONFIG_FILES([Makefile src/Makefile tools/Makefile])
+AC_OUTPUT
+
